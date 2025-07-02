@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrapples | H1 2025 Investor Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .nav-link {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .nav-link.active {
+            color: #14b8a6;
+            border-bottom: 2px solid #14b8a6;
+        }
+        .nav-link:not(.active):hover {
+            color: #0d9488;
+        }
+        .btn-metric {
+            transition: all 0.2s ease-in-out;
+        }
+        .btn-metric.active {
+            background-color: #14b8a6;
+            color: white;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        .pipeline-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .pipeline-card .details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+        .pipeline-card.open .details {
+            max-height: 500px;
+        }
+        .section {
+            display: none;
+        }
+        .section.active {
+            display: block;
+        }
+    </style>
+</head>
+<body class="text-slate-700">
+
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <h1 class="text-2xl font-bold text-teal-600">SPARE SNACKS</h1>
+                <h2 class="hidden sm:block text-lg font-semibold text-slate-600">H1 2025 Investor Dashboard</h2>
+            </div>
+        </div>
+        <nav class="bg-slate-100">
+            <div class="container mx-auto px-4">
+                <ul class="flex justify-center space-x-4 sm:space-x-8 border-b border-slate-200">
+                    <li><a class="nav-link active py-3 px-2 inline-block font-semibold" data-section="dashboard">Dashboard</a></li>
+                    <li><a class="nav-link py-3 px-2 inline-block font-semibold" data-section="pipeline">Pipeline</a></li>
+                    <li><a class="nav-link py-3 px-2 inline-block font-semibold" data-section="market">Market Edge</a></li>
+                    <li><a class="nav-link py-3 px-2 inline-block font-semibold" data-section="strategy">Strategy</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto p-4 sm:p-6 lg:p-8">
+
+        <section id="dashboard" class="section active">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-extrabold text-slate-800 mb-2">The Turning Point</h2>
+                <p class="max-w-3xl mx-auto text-lg text-slate-600">Despite a challenging H1, a game-changing retail launch and strategic pivot to health signal a new era of growth. This dashboard provides an interactive overview of our performance, opportunities, and forward-looking strategy.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div class="lg:col-span-3 bg-teal-500 text-white rounded-lg shadow-lg p-6 flex flex-col md:flex-row items-center">
+                    <div class="text-center md:text-left flex-grow">
+                        <h3 class="text-2xl font-bold mb-2">GAME-CHANGING WIN: Top UK Grocer Launch Secured!</h3>
+                        <p class="mb-4">We've secured our largest-ever retail partnership, launching Scrapples into a top UK grocer. This is a monumental step forward, validating our brand and unlocking significant revenue potential.</p>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 text-center">
+                            <div>
+                                <span class="block text-2xl font-bold">~350</span>
+                                <span class="block text-sm opacity-90">Stores</span>
+                            </div>
+                            <div>
+                                <span class="block text-2xl font-bold">Oct '25</span>
+                                <span class="block text-sm opacity-90">Target Launch</span>
+                            </div>
+                            <div class="col-span-2 sm:col-span-1">
+                                <span class="block text-2xl font-bold">Incubator</span>
+                                <span class="block text-sm opacity-90">Supported Programme</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6 md:mt-0 md:ml-6 flex-shrink-0">
+                         <div class="w-40 h-40 bg-white/20 rounded-full flex items-center justify-center">
+                             <span class="text-6xl font-extrabold text-white">🏆</span>
+                         </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-2 bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold text-slate-800 mb-1">H1 Performance Snapshot</h3>
+                    <p class="text-slate-500 mb-4">H1 performance reflects a strategic scale-back of promotions to manage cash flow. However, momentum improved in Q2.</p>
+                    <div class="flex justify-center space-x-2 mb-4">
+                        <button class="btn-metric px-4 py-2 text-sm font-semibold rounded-full border border-slate-300" data-metric="volume">Volume</button>
+                        <button class="btn-metric px-4 py-2 text-sm font-semibold rounded-full border border-slate-300 active" data-metric="revenue">Revenue</button>
+                        <button class="btn-metric px-4 py-2 text-sm font-semibold rounded-full border border-slate-300" data-metric="profit">Gross Profit</button>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="performanceChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold text-slate-800 mb-4">Key H1 Highlights</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <span class="text-teal-500 mr-3 mt-1">✓</span>
+                            <div>
+                                <h4 class="font-semibold">Morrisons Re-engaged</h4>
+                                <p class="text-sm text-slate-500">New promo plan for single bags going live for the 'Back to School' season.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-teal-500 mr-3 mt-1">✓</span>
+                            <div>
+                                <h4 class="font-semibold">Carrefour UAE Launch</h4>
+                                <p class="text-sm text-slate-500">Launching into 50 stores in August, establishing a key export market.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-teal-500 mr-3 mt-1">✓</span>
+                            <div>
+                                <h4 class="font-semibold">Brand Awareness Growth</h4>
+                                <p class="text-sm text-slate-500">Reached ~20k social followers. New social media manager onboard to accelerate engagement.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-teal-500 mr-3 mt-1">✓</span>
+                            <div>
+                                <h4 class="font-semibold">Partnership Power</h4>
+                                <p class="text-sm text-slate-500">New activation with Little Yeos on Ocado through the Kids Food & Drink Collective.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="pipeline" class="section">
+             <div class="text-center mb-8">
+                <h2 class="text-3xl font-extrabold text-slate-800 mb-2">Growth Pipeline</h2>
+                <p class="max-w-3xl mx-auto text-lg text-slate-600">Beyond our flagship win, a robust pipeline across retail, international, and foodservice channels demonstrates broad market appeal. Click each card for more details.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                </div>
+        </section>
+
+        <section id="market" class="section">
+             <div class="text-center mb-8">
+                <h2 class="text-3xl font-extrabold text-slate-800 mb-2">Our Market Edge</h2>
+                <p class="max-w-3xl mx-auto text-lg text-slate-600">We are uniquely positioned at the intersection of a national health crisis and a surging consumer demand for genuinely healthy, trustworthy snacks for kids.</p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                 <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold text-slate-800 mb-4 text-center">The National Health Crisis Is Our Call to Action</h3>
+                    <div class="grid grid-cols-2 gap-4 text-center">
+                        <div class="bg-slate-100 p-4 rounded-lg">
+                            <div class="text-4xl font-extrabold text-teal-500">81%</div>
+                            <p class="font-semibold">of kids (5-15) don't get their 5-a-day.</p>
+                        </div>
+                        <div class="bg-slate-100 p-4 rounded-lg">
+                            <div class="text-4xl font-extrabold text-teal-500">38%</div>
+                            <p class="font-semibold">of 10-11 year olds are overweight or obese.</p>
+                        </div>
+                    </div>
+                    <p class="text-center mt-4 text-slate-600">This creates a clear and urgent demand for the clean, healthy, and tasty snacks that Scrapples provides.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6">
+                     <h3 class="text-xl font-bold text-slate-800 mb-4 text-center">Replacing Unhealthy Habits</h3>
+                     <p class="text-center text-slate-500 mb-4">Parents are most likely to swap out traditional crisps and confectionery for Scrapples.</p>
+                    <div class="chart-container h-64 md:h-auto">
+                        <canvas id="swapChart"></canvas>
+                    </div>
+                </div>
+                <div class="lg:col-span-2 bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold text-slate-800 mb-4">Market-Leading Health Credentials</h3>
+                    <p class="text-slate-500 mb-4">Scrapples consistently outperforms competitors on key health and sustainability metrics, boasting the cleanest label in the fruit snack category.</p>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-sm">
+                            <thead class="bg-slate-100 text-slate-600 font-semibold">
+                                <tr>
+                                    <th class="p-3">Brand</th>
+                                    <th class="p-3 text-center">HFSS Rating*</th>
+                                    <th class="p-3 text-center">No Added Sugar/Salt/Fat</th>
+                                    <th class="p-3 text-center">Whole Fruit</th>
+                                    <th class="p-3 text-center">No Palm Oil</th>
+                                </tr>
+                            </thead>
+                            <tbody id="competitor-table-body">
+                                </tbody>
+                        </table>
+                        <p class="text-xs text-slate-400 mt-2">*Lower HFSS Nutritional Rating is better.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="strategy" class="section">
+             <div class="text-center mb-8">
+                <h2 class="text-3xl font-extrabold text-slate-800 mb-2">Strategy & Forward Look</h2>
+                <p class="max-w-3xl mx-auto text-lg text-slate-600">We have a clear, focused plan to capitalize on our current momentum, optimize for profitability, and scale the business for long-term success.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h4 class="text-lg font-bold text-teal-600 mb-2">Health First Brand Repositioning</h4>
+                    <p class="text-slate-600">We are sharpening our brand messaging to lead with our strongest assets: superior health and taste credentials. This aligns with consumer demand and retailer priorities, moving beyond food waste as the primary message while retaining it as a core value.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h4 class="text-lg font-bold text-teal-600 mb-2">COGS & Margin Enhancement</h4>
+                    <p class="text-slate-600">A full supply chain review is underway to protect profitability against retailer margin pressure. We are working closely with our manufacturer to optimize cost of goods, ensuring we can scale effectively without compromising on quality.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h4 class="text-lg font-bold text-teal-600 mb-2">Team Structure for Scale</h4>
+                    <p class="text-slate-600">We are building a team of specialists focused on commercial delivery, activation, and operations. This ensures we have the right expertise to successfully execute our largest launches in H2 2025 and beyond.</p>
+                </div>
+                 <div class="md:col-span-2 lg:col-span-1 bg-white rounded-lg shadow-md p-6">
+                    <h4 class="text-lg font-bold text-teal-600 mb-2">Minecraft Deal Status</h4>
+                    <p class="text-slate-600">Terms have been significantly improved (70% reduction in MGV). However, we are strategically reviewing this as the optimal use of marketing budget, with our new retail partner preferring a focus on the core brand first. We plan to revisit this in 2026.</p>
+                </div>
+                <div class="lg:col-span-2 bg-teal-50 border-l-4 border-teal-500 rounded-r-lg p-6">
+                    <h3 class="text-2xl font-bold text-slate-800 mb-2">The Ask: Fueling Our Growth</h3>
+                    <p class="text-slate-600 mb-2">As planned, we are kicking off a larger fundraising round in H2 2025. This investment is crucial to:</p>
+                    <ul class="list-disc list-inside text-slate-600 space-y-1">
+                        <li>Fund the successful rollout of our major new listings.</li>
+                        <li>Expand the team with key specialist talent.</li>
+                        <li>Support new product development to broaden our appeal.</li>
+                        <li>Maintain strong market momentum and drive brand awareness.</li>
+                    </ul>
+                     <p class="mt-4 font-semibold text-teal-700">Introductions to new potential investors aligned with our health-led mission would be massively appreciated.</p>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-slate-800 text-slate-400 mt-12">
+        <div class="container mx-auto p-6 text-center text-sm">
+            <p>&copy; 2025 Spare Snacks. All rights reserved.</p>
+            <p class="mt-1">This document contains confidential information for investors only.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            const performanceData = {
+                labels: ['H2 (Last Year)', 'H1 (This Year)'],
+                volume: {
+                    label: 'Volume (Bags)',
+                    data: [298030, 253487],
+                    backgroundColor: 'rgba(59, 130, 246, 0.7)',
+                    borderColor: 'rgba(59, 130, 246, 1)',
+                    note: '+4% volume growth in Q2 of H1'
+                },
+                revenue: {
+                    label: 'Revenue (£)',
+                    data: [137191, 123252],
+                    backgroundColor: 'rgba(20, 184, 166, 0.7)',
+                    borderColor: 'rgba(20, 184, 166, 1)',
+                    note: '+8% revenue growth in Q2 of H1'
+                },
+                profit: {
+                    label: 'Gross Profit (£)',
+                    data: [39811, 41674],
+                    backgroundColor: 'rgba(249, 115, 22, 0.7)',
+                    borderColor: 'rgba(249, 115, 22, 1)',
+                    note: 'Gross Profit % improved from 29% to 33%'
+                }
+            };
+
+            const swapData = {
+                labels: ['Crisps', 'Confectionery', 'Cakes & Biscuits', 'Other'],
+                datasets: [{
+                    label: 'Most Likely to Swap For Scrapples',
+                    data: [38.0, 27.2, 25.1, 9.7],
+                    backgroundColor: ['#3b82f6', '#f97316', '#84cc16', '#a855f7'],
+                    hoverOffset: 4
+                }]
+            };
+
+            const pipelineData = [
+                { category: 'Major UK Retail', title: 'Morrisons', status: 'Re-engaged', details: 'After several buyer changes, we have re-engaged and have a new promo plan going live for single bags at front-of-store, timed for the Autumn back-to-school season.' },
+                { category: 'Major UK Retail', title: 'Tesco (Baby & Toddler)', status: 'Positive Feedback', details: 'Received positive feedback from the Baby and Toddler buyer who is keen to back health-led brands for the 3+ section. They have asked to keep in touch and welcomed further discussions.' },
+                { category: 'Major UK Retail', title: 'Sainsbury\'s', status: 'On Hold', details: 'Progressed to registering products, but space is currently limited. We continue to request detailed feedback after coming close to a listing.' },
+                { category: 'International', title: 'Carrefour UAE', status: 'Launching Aug 2025', details: 'Launch confirmed for 50 stores throughout the UAE, featured alongside a cohort of healthier brands. Discussions also underway with Spinneys and Choitrams.' },
+                { category: 'Foodservice / OOH', title: 'Serco Healthcare', status: 'Final Review Stage', details: 'Scrapples and Spare snacks are in the final stage of a review for a new UK hospital and leisure centre trial range with global services giant Serco, encompassing 50 sites.' },
+                { category: 'Foodservice / OOH', title: 'Dolce School Caterer', status: 'In Discussion', details: 'Currently discussing our range as a healthy option for their school lunch offering. Dolce is a £60m caterer serving Primary and Secondary schools.' },
+            ];
+
+            const competitorData = [
+                { brand: 'Scrapples', hfss: 3, nas: '✓', wf: '✓', npo: '✓', is_scrapples: true },
+                { brand: 'Sunny Raisin', hfss: 5, nas: '✗', wf: '✓', npo: '✓' },
+                { brand: 'Bear', hfss: 7, nas: '✓', wf: '✗', npo: '✓' },
+                { brand: 'Fruit Winders', hfss: 11, nas: '✗', wf: '✗', npo: '✗' },
+                { brand: 'Fruit Bowl', hfss: 12, nas: '✗', wf: '✗', npo: '✗' },
+                { brand: 'Fruit School Bars', hfss: 14, nas: '✗', wf: '✗', npo: '✗' },
+            ];
+            
+            let performanceChartInstance;
+            const performanceChartCtx = document.getElementById('performanceChart').getContext('2d');
+            
+            function createPerformanceChart(metric) {
+                if (performanceChartInstance) {
+                    performanceChartInstance.destroy();
+                }
+
+                const data = performanceData[metric];
+                performanceChartInstance = new Chart(performanceChartCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: performanceData.labels,
+                        datasets: [{
+                            label: data.label,
+                            data: data.data,
+                            backgroundColor: data.backgroundColor,
+                            borderColor: data.borderColor,
+                            borderWidth: 1,
+                            borderRadius: 5,
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        let label = context.dataset.label || '';
+                                        if (label) {
+                                            label += ': ';
+                                        }
+                                        if (context.parsed.y !== null) {
+                                             if(metric === 'revenue' || metric === 'profit') {
+                                                label += new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'GBP', minimumFractionDigits: 0 }).format(context.parsed.y);
+                                             } else {
+                                                label += new Intl.NumberFormat('en-GB').format(context.parsed.y);
+                                             }
+                                        }
+                                        return label;
+                                    }
+                                }
+                            },
+                            subtitle: {
+                                display: true,
+                                text: `Momentum: ${data.note}`,
+                                position: 'bottom',
+                                align: 'start',
+                                font: {
+                                    style: 'italic'
+                                },
+                                color: '#475569'
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                grid: {
+                                    color: '#e2e8f0'
+                                },
+                                ticks: {
+                                    callback: function(value, index, values) {
+                                        if (value >= 1000000) return (value / 1000000) + 'M';
+                                        if (value >= 1000) return (value / 1000) + 'k';
+                                        return value;
+                                    }
+                                }
+                            },
+                            x: {
+                                grid: {
+                                    display: false
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            const swapChartCtx = document.getElementById('swapChart').getContext('2d');
+            new Chart(swapChartCtx, {
+                type: 'doughnut',
+                data: swapData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                        },
+                        tooltip: {
+                             callbacks: {
+                                label: function(context) {
+                                    let label = context.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed !== null) {
+                                        label += context.parsed + '%';
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            function populatePipeline() {
+                const container = document.querySelector('#pipeline .grid');
+                pipelineData.forEach(item => {
+                    const card = document.createElement('div');
+                    card.className = 'pipeline-card bg-white rounded-lg shadow-md overflow-hidden';
+                    card.innerHTML = `
+                        <div class="p-5">
+                            <h4 class="font-bold text-lg text-slate-800">${item.title}</h4>
+                            <p class="text-sm font-semibold text-teal-600">${item.category}</p>
+                            <div class="mt-2 inline-flex items-center bg-slate-100 text-slate-700 text-xs font-medium px-2.5 py-0.5 rounded-full">
+                                ${item.status}
+                            </div>
+                        </div>
+                        <div class="details px-5 pb-5 text-slate-600 text-sm">
+                            <p>${item.details}</p>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                    card.querySelector('.p-5').addEventListener('click', () => {
+                        card.classList.toggle('open');
+                    });
+                });
+            }
+            
+            function populateCompetitors() {
+                const tbody = document.getElementById('competitor-table-body');
+                competitorData.forEach(comp => {
+                    const row = document.createElement('tr');
+                    const isScrapplesClass = comp.is_scrapples ? 'bg-teal-50 font-bold text-teal-700' : 'border-b border-slate-200';
+                    row.className = isScrapplesClass;
+                    row.innerHTML = `
+                        <td class="p-3">${comp.brand}</td>
+                        <td class="p-3 text-center">${comp.hfss}</td>
+                        <td class="p-3 text-center">${comp.nas}</td>
+                        <td class="p-3 text-center">${comp.wf}</td>
+                        <td class="p-3 text-center">${comp.npo}</td>
+                    `;
+                    tbody.appendChild(row);
+                });
+            }
+
+            const metricButtons = document.querySelectorAll('.btn-metric');
+            metricButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    metricButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    createPerformanceChart(button.dataset.metric);
+                });
+            });
+
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('.section');
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    link.classList.add('active');
+
+                    const sectionId = link.dataset.section;
+                    sections.forEach(s => s.classList.remove('active'));
+                    document.getElementById(sectionId).classList.add('active');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            });
+
+            // Initial calls
+            createPerformanceChart('revenue');
+            populatePipeline();
+            populateCompetitors();
+        });
+    </script>
+</body>
+</html>
